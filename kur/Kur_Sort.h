@@ -1,5 +1,0 @@
-
-
-insertionsort(x)
-
-heapsort(x)

@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "Kur_Sort.h"
+#include "heapsort.h"
 
 
 
@@ -7,7 +7,8 @@ int main()
 {
     int x;
     scanf("%d", &x);
-    insertionsort(x);
+
     heapsort(x);
+
     return 0; 
 }

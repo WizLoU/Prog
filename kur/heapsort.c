@@ -9,10 +9,43 @@ double wtime()
     return (double)t.tv_sec + (double)t.tv_usec * 1E-6;
 }
 
+void printArray(int arr[], int x) {
+    for (int i = 0; i < x; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
 int getrand(int min, int max)
-{
+{ 
     return (double)rand() / (RAND_MAX + 1.0) * (max - min) + min;
 }
+
+
+void  filling_array(int *a, int min, int max, int x)
+{
+    // Заполнение массива случайными числами
+    for (int i = 0; i < x; i++)
+        a[i] = getrand( min, max);
+}
+
+// // Функция для заполнения массива порядковыми числами, идущими по убыванию
+// void  fillingArray(int arr[], int n) {
+//     for (int i = 0; i < n; i++) {
+//         arr[i] = n - i;
+//     }
+// }
+
+
+
+// // Функция для заполнения массива порядковыми числами, идущими по возрастанию
+// void  fillingArray(int arr[], int x) {
+//     for (int i = 0; i < x; i++) {
+//         arr[i] = i + 1;
+//     }
+// }
+
+
 
 // Функция "просеивания" через кучу - формирование кучи
 void siftDown(int *arr, int x, int bottom)
@@ -42,7 +75,7 @@ void siftDown(int *arr, int x, int bottom)
     }
 }
 // Функция сортировки на куче
-void heapSort(int *arr, int array_size)
+void Sort(int *arr, int array_size)
 {
     // Формируем нижний ряд пирамиды
     for (int i = (array_size / 2); i >= 0; i--)
@@ -57,26 +90,26 @@ void heapSort(int *arr, int array_size)
     }
 }
 
-int main()
+int heapsort(int x)
 {
 
     int min = 0, max = 100000;
-    int *a;  // указатель на массив
-    int x;
-    scanf("%d", &x);
     double v = wtime();
-    a = (int*)malloc(x * sizeof(int));
-    // Заполнение массива случайными числами
-    for (int i = 0; i < x; i++)
-        a[i] = getrand(min, max);
+    int *a = (int*)malloc(x * sizeof(int));
+
+    //заполнение массива 
+    filling_array(a, min, max, x);
+
+    // fillingArray(a, x);
+
     // Вывод элементов массива до сортировки
-    for (int i = 0; i < x; i++)
-        printf("%d ", a[i]);
-    printf("\n");
-    heapSort(a, x); // вызов функции сортировки
+    // printArray(a, x);
+
+    Sort(a, x); // вызов функции сортировки
+
     // Вывод элементов массива после сортировки
-    for (int i = 0; i < x; i++)
-        printf("%d ", a[i]);
+    // printArray(a, x);
+
     double m = wtime();
     printf("%lf\n", m - v);
     return 0;
